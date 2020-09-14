@@ -1,0 +1,30 @@
+<h3 mat-dialog-title>New user</h3>
+<mat-dialog-content fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+  <form [formGroup]="detailForm"
+        fxLayout="column"
+        fxLayoutAlign="start stretch"
+        fxLayoutGap="10px">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput [formControl]="firstName">
+      <mat-error *ngIf="firstName.invalid">First name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput [formControl]="lastName">
+      <mat-error *ngIf="lastName.invalid">Last name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [formControl]="email" type="email">
+      <mat-error *ngIf="email.invalid">Email is required</mat-error>
+    </mat-form-field>
+    <mat-radio-group [formControl]="gender"
+                     fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+      <mat-radio-button *ngFor="let gender of genders" [value]="gender">{{gender}}</mat-radio-button>
+    </mat-radio-group>
+  </form>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-raised-button color="primary" (click)="add()" [disabled]="!detailForm.valid">Add</button>
+  </div>
+</mat-dialog-content>
